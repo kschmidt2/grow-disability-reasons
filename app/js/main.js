@@ -26,20 +26,22 @@ document.addEventListener('DOMContentLoaded', function () {
             type: 'bar',
             styledMode: true,
             spacingBottom: 25,
-            spacingRight: 100
+            spacingRight: 100,
+            spacingLeft: -1
         }, 
         title: {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1jurAvrn3R40j-lLip_gNRCkmz_66d_H64CM9pi9whFw'
+        },
+        plotOptions: {
+            series: {
+                groupPadding: 0.1
+            }
         },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
             labels: {
@@ -54,14 +56,18 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: {
                 useHTML: true,
                 overflow: 'allow'
-            }
+            },
+            max: 30
         },
         credits: {
             enabled: false
         },
         tooltip: {
             shadow: false,
-            padding: 10
+            padding: 10,
+            formatter: function () {
+                return this.y + '%';
+            }
         },
         responsive: {
             rules: [{
@@ -78,6 +84,81 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 tooltip: {
                     enabled: false
+                },
+                yAxis: {
+                    tickAmount: 4
+                }
+              }
+            }]
+        }
+    });
+    const myChart2 = Highcharts.chart('chart-container-2', {
+        chart: {
+            type: 'bar',
+            styledMode: true,
+            spacingBottom: 25,
+            spacingRight: 100,
+            spacingLeft: -1
+        }, 
+        title: {
+            text: null
+        },
+        data: {
+            googleSpreadsheetKey: '1jurAvrn3R40j-lLip_gNRCkmz_66d_H64CM9pi9whFw',
+            googleSpreadsheetWorksheet: 2
+        },
+        plotOptions: {
+            series: {
+                groupPadding: 0.1
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        xAxis: {
+            labels: {
+                style: {
+                    whiteSpace: 'nowrap'
+                }
+            },
+            tickLength: 5
+        },
+        yAxis: {
+            title: false,
+            labels: {
+                useHTML: true,
+                overflow: 'allow'
+            },
+            max: 30
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            shadow: false,
+            padding: 10,
+            formatter: function () {
+                return this.y + '%';
+            }
+        },
+        responsive: {
+            rules: [{
+              condition: {
+                maxWidth: 500
+              },
+              chartOptions: {
+                chart: {
+                  spacingRight: 10
+                },
+                legend: {
+                    align: 'left',
+                    x: -18
+                },
+                tooltip: {
+                    enabled: false
+                },
+                yAxis: {
+                    tickAmount: 4
                 }
               }
             }]
